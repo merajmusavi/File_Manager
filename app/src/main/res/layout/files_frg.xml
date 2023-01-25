@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout
+    android:id="@+id/frame_ic_and_text"
+    android:paddingStart="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+
+        android:id="@+id/back_ic"
+        app:srcCompat="@drawable/ic_back_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+       <TextView
+           android:fontFamily="@font/primary_bold"
+           android:layout_marginStart="32dp"
+           android:id="@+id/text_path"
+           android:textColor="@color/black"
+           android:text="external storage"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/frame_ic_and_text"
+        android:id="@+id/rec_files"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</RelativeLayout>

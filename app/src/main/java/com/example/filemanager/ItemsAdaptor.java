@@ -15,9 +15,12 @@ import java.util.List;
 
 public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> {
     List<File> files;
+    private onItemClick onItemClicked;
 
-    ItemsAdaptor(List<File> files) {
+
+    ItemsAdaptor(List<File> files,onItemClick onItemClicked) {
         this.files = files;
+        this.onItemClicked = onItemClicked;
     }
 
     @NonNull
@@ -37,7 +40,7 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
         return files.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView icon_file;
         TextView tv_file_name;
 
@@ -56,6 +59,16 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
 
             }
             tv_file_name.setText(file.getName());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onItemClicked.onFileClicked(file);
+                }
+            });
         }
+    }
+    public interface onItemClick{
+        void onFileClicked(File file);
     }
 }

@@ -5,28 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginStart="6dp"
+        android:orientation="horizontal"
         android:id="@+id/frame_ic_and_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="12dp">
+        >
 
         <ImageView
-
             android:id="@+id/back_ic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_back_black_24dp" />
 
         <TextView
             android:id="@+id/text_path"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="4dp"
             android:fontFamily="@font/primary_bold"
+            android:gravity="center_horizontal"
             android:text="external storage"
-            android:textColor="@color/black" />
-    </FrameLayout>
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/back_ic"
+            app:layout_constraintStart_toEndOf="@+id/back_ic"
+            app:layout_constraintTop_toTopOf="@+id/back_ic" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_files"

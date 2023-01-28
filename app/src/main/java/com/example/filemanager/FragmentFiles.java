@@ -19,6 +19,8 @@ import java.util.Arrays;
 
 public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick {
     private String path;
+    private ItemsAdaptor itemsAdaptor;
+    RecyclerView recyclerView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,13 @@ public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick 
         File currentFolder = new File(path);
         File[] files = currentFolder.listFiles();
         TextView tv_path = view.findViewById(R.id.text_path);
-        tv_path.setText(path);
+
+        if (currentFolder.getName().equalsIgnoreCase("files")){
+            tv_path.setText("external storage");
+        }else{
+            tv_path.setText(currentFolder.getName());
+        }
+
         ImageView back = view.findViewById(R.id.back_ic);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,9 +48,10 @@ public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick 
                 getActivity().onBackPressed();
             }
         });
-        RecyclerView recyclerView = view.findViewById(R.id.rec_files);
+         recyclerView = view.findViewById(R.id.rec_files);
+        itemsAdaptor = new ItemsAdaptor(Arrays.asList(files),this);
          recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-        recyclerView.setAdapter(new ItemsAdaptor(Arrays.asList(files),this));
+        recyclerView.setAdapter(itemsAdaptor);
         return  view;
     }
 
@@ -51,5 +60,15 @@ public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick 
         if (file.isDirectory()) {
             ((MainActivity) getActivity()).loadFiles(file.getPath());
         }
+    }
+    public void createFolder(String folderName){
+File file = new File(path+File.separator+folderName);
+
+if (!file.exists()){
+    if (file.mkdir()){
+        itemsAdaptor.createFolder(file);
+        recyclerView.scrollToPosition(0);
+    }
+}
     }
 }

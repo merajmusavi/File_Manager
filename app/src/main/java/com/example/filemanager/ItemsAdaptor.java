@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> {
@@ -19,7 +20,7 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
 
 
     ItemsAdaptor(List<File> files,onItemClick onItemClicked) {
-        this.files = files;
+        this.files = new ArrayList<>(files);
         this.onItemClicked = onItemClicked;
     }
 
@@ -70,5 +71,10 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
     }
     public interface onItemClick{
         void onFileClicked(File file);
+    }
+
+    public void createFolder(File file){
+files.add(file);
+notifyItemInserted(0);
     }
 }

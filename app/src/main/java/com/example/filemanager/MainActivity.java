@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -18,6 +21,26 @@ ImageView add_new_folder;
         setContentView(R.layout.activity_main);
         File file = getExternalFilesDir(null);
 loadFiles(file.getPath(),false);
+EditText editText = findViewById(R.id.et_main_search);
+editText.addTextChangedListener(new TextWatcher() {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_files);
+    if (fragment instanceof FragmentFiles){
+        ((FragmentFiles) fragment).search(s.toString());
+    }
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
+});
 add_new_folder = findViewById(R.id.add_new_folder);
 add_new_folder.setOnClickListener(new View.OnClickListener() {
     @Override

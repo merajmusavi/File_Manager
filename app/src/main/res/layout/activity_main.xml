@@ -40,6 +40,7 @@
             android:layout_height="56dp">
 
             <EditText
+                android:id="@+id/et_main_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"

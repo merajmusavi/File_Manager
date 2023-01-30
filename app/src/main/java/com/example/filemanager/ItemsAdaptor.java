@@ -17,12 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> {
-    List<File> files;
+    private List<File> files;
+    private List<File> filtered;
     private onItemClick onItemClicked;
 
 
     ItemsAdaptor(List<File> files, onItemClick onItemClicked) {
         this.files = new ArrayList<>(files);
+        this.filtered = this.files;
         this.onItemClicked = onItemClicked;
     }
 
@@ -35,12 +37,12 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.bind(files.get(position));
+        holder.bind(filtered.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return files.size();
+        return filtered.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -114,5 +116,19 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
           files.remove(index);
           notifyItemRemoved(index);
       }
+    }
+    public void search(String search){
+if (search.length()>0){
+List<File> files1 = new ArrayList<>();
+    for (File file : this.files) {
+if (file.getName().toLowerCase().contains(search.toLowerCase())){
+    files1.add(file);
+}
+this.filtered = files1;
+notifyDataSetChanged();
+    }
+}else {
+    this.filtered = files;
+}
     }
 }

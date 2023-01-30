@@ -118,4 +118,9 @@ public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick 
     private File getPath(String fileName){
         return new File(getContext().getExternalFilesDir(null).getPath()+File.separator+"xo"+ File.separator+fileName);
     }
+    public void search(String query){
+if (itemsAdaptor!=null){
+    itemsAdaptor.search(query);
+}
+    }
 }

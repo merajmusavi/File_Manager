@@ -1,8 +1,9 @@
 package com.example.filemanager;
 
 public enum Constant {
-    GRID(1),ROW(0);
+ROW(0),GRID(1);
     private int value;
+
     Constant(int value) {
     this.value = value;
     }

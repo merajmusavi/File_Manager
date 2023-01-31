@@ -132,7 +132,7 @@ if (itemsAdaptor!=null){
         if (itemsAdaptor!=null){
         itemsAdaptor.setConstant(constant);
         if (constant == Constant.GRID){
-            gridLayoutManager.setSpanCount(2);
+             gridLayoutManager.setSpanCount(2);
         }else {
             gridLayoutManager.setSpanCount(1);
         }

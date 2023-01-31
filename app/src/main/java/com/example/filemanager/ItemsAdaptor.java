@@ -22,7 +22,6 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
     private onItemClick onItemClicked;
     private Constant constant = Constant.ROW;
 
-
     ItemsAdaptor(List<File> files, onItemClick onItemClicked) {
         this.files = new ArrayList<>(files);
         this.filtered = this.files;

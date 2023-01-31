@@ -17,24 +17,25 @@
         <ImageView
             android:rotation="90"
             android:src="@drawable/ic_more_vertical_black_24dp"
-            android:id="@+id/iv_more"
+            android:id="@+id/iv_more_ic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:id="@+id/iv_icon"
             android:layout_gravity="center_horizontal"
             tools:src="@drawable/ic_folder_black_32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:id="@+id/tv_file_name"
             android:textColor="@color/black"
             android:fontFamily="@font/primary_regular"
             tools:text="text"
             android:maxLines="1"
             android:ellipsize="end"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/tv_file_name"
             android:textAlignment="center"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"

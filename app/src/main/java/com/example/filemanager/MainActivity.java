@@ -48,16 +48,20 @@ public class MainActivity extends AppCompatActivity implements DialogAddFile.Cre
         toggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
             @Override
             public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_files);
 
                 if (checkedId == R.id.main_l && isChecked){
+                    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_files);
+
                     if (fragment instanceof FragmentFiles){
                         ((FragmentFiles) fragment).setConstant(Constant.ROW);
-                    }else if (checkedId==R.id.grid_l && isChecked){
-                        ((FragmentFiles) fragment).setConstant(Constant.GRID);
-
                     }
 
+                    }else if (checkedId==R.id.grid_l && isChecked){
+                    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frame_files);
+
+                    if (fragment instanceof FragmentFiles){
+                        ((FragmentFiles) fragment).setConstant(Constant.GRID);
+                    }
                 }
             }
         });

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +26,8 @@ public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick 
     private String path;
     private ItemsAdaptor itemsAdaptor;
     RecyclerView recyclerView;
+    GridLayoutManager gridLayoutManager;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +58,8 @@ public class FragmentFiles extends Fragment implements ItemsAdaptor.onItemClick 
         });
         recyclerView = view.findViewById(R.id.rec_files);
         itemsAdaptor = new ItemsAdaptor(Arrays.asList(files), this);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        gridLayoutManager = new GridLayoutManager(getContext(),1,RecyclerView.VERTICAL,false);
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(itemsAdaptor);
         return view;
     }
@@ -123,4 +128,13 @@ if (itemsAdaptor!=null){
     itemsAdaptor.search(query);
 }
     }
+    public void setConstant(Constant constant){
+        if (itemsAdaptor!=null){
+        itemsAdaptor.setConstant(constant);
+        if (constant == Constant.GRID){
+            gridLayoutManager.setSpanCount(2);
+        }else {
+            gridLayoutManager.setSpanCount(1);
+        }
+        }}
 }

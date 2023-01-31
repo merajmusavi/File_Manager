@@ -20,6 +20,7 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
     private List<File> files;
     private List<File> filtered;
     private onItemClick onItemClicked;
+    private Constant constant = Constant.ROW;
 
 
     ItemsAdaptor(List<File> files, onItemClick onItemClicked) {
@@ -31,7 +32,7 @@ public class ItemsAdaptor extends RecyclerView.Adapter<ItemsAdaptor.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_file, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(viewType==Constant.ROW.getValue()?R.layout.item_file:R.layout.item_grid, parent, false));
     }
 
     @Override
@@ -130,5 +131,15 @@ notifyDataSetChanged();
 }else {
     this.filtered = files;
 }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return constant.getValue();
+    }
+
+    public void setConstant(Constant constant) {
+        this.constant = constant;
+        notifyDataSetChanged();
     }
 }
